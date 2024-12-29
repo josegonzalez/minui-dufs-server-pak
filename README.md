@@ -1,4 +1,4 @@
-# trimui-brick-toggle-dufs.pak
+# trimui-brick-toggle-dufs-server.pak
 
 A TrimUI Brick app wrapping [`dufs`](https://github.com/sigoden/dufs/), an http file server.
 
