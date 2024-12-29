@@ -11,14 +11,14 @@ dufs_on() {
     cd /mnt/SDCARD/ || exit
     rm "$progdir/dufs.logs" || true
     ("$progdir/bin/dufs" --allow-all --bind 0.0.0.0 --port 80 --log-file "$progdir/dufs.logs" &) &
-    wait_for_duffs 10
+    wait_for_dufs 10
 }
 
 dufs_off() {
     killall dufs
 }
 
-wait_for_duffs() {
+wait_for_dufs() {
     max_counter=$1
     counter=0
 
@@ -42,7 +42,7 @@ wait_for_duffs() {
         echo "Starting dufs..."
         dufs_on
 
-        if ! wait_for_duffs 1; then
+        if ! wait_for_dufs 1; then
             show.elf "$RES_PATH/failed.png" 2
             echo "Failed to start dufs!"
             return 1
