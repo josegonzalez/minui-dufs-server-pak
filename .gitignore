@@ -1,4 +1,3 @@
 dufs
 bin/*
 !bin/.gitkeep
-evtest
