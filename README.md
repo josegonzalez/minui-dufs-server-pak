@@ -1,4 +1,4 @@
-# trimui-brick-toggle-dufs-server.pak
+# trimui-brick-dufs-server.pak
 
 A TrimUI Brick app wrapping [`dufs`](https://github.com/sigoden/dufs/), an http file server.
 
@@ -15,7 +15,7 @@ make build
 ## Installation
 
 > [!IMPORTANT]
-> The dufs binary **must** first be built for the TrimUI Brick.
+> The dufs binary **must** first be built for the TrimUI Brick. See the "Building" section for more details.
 
 1. Mount your TrimUI Brick SD card.
 2. Create a folder in your SD card with the full-path of `/Tools/tg3040/Toggle Dufs Server.pak`.
