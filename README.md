@@ -24,4 +24,6 @@ make build
 
 ## Usage
 
-This pak will start/stop the `dufs` server, which will run until either it is toggled off or the device is terminated.
+### daemon-mode
+
+By default, `dufs` runs as a foreground process, terminating on app exit. To run `dufs` in daemon mode, create a file named `daemon-mode` in the pak folder. This will turn the app into a toggle for `dufs`.
