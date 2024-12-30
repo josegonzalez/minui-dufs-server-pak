@@ -118,7 +118,7 @@ main_daemonize() {
     show.elf "$RES_PATH/done.png" 2
 }
 
-main_primary() {
+main_process() {
     show.elf "$RES_PATH/starting.png" &
     echo "Starting $SERVICE_NAME"
     service_on
@@ -154,7 +154,7 @@ main() {
     if [ -f "$progdir/daemon-mode" ]; then
         main_daemonize
     else
-        main_primary
+        main_process
     fi
 }
 
