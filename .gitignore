@@ -1,2 +1,4 @@
 dufs
-bin/dufs
+bin/*
+!bin/.gitkeep
+evtest
