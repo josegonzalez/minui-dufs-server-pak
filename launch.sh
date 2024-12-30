@@ -99,11 +99,11 @@ wait_for_service() {
 main_daemonize() {
     echo "Toggling $SERVICE_NAME..."
     if pgrep "$SERVICE_NAME"; then
-        show.elf "$RES_PATH/disable.png" 2
+        show.elf "$RES_PATH/disabling.png" 2
         echo "Stopping $SERVICE_NAME..."
         service_off
     else
-        show.elf "$RES_PATH/enable.png" 2
+        show.elf "$RES_PATH/enabling.png" 2
         echo "Starting $SERVICE_NAME..."
         service_on
 
@@ -119,6 +119,12 @@ main_daemonize() {
 }
 
 main_process() {
+    if pgrep "$SERVICE_NAME"; then
+        show.elf "$RES_PATH/disabling.png" 2
+        echo "Stopping $SERVICE_NAME..."
+        service_off
+    fi
+
     show.elf "$RES_PATH/starting.png" &
     echo "Starting $SERVICE_NAME"
     service_on
