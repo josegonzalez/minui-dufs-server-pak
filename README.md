@@ -14,13 +14,12 @@ make build
 
 ## Installation
 
-> [!IMPORTANT]
-> The dufs binary **must** first be built for the TrimUI Brick. See the "Building" section for more details.
-
 1. Mount your TrimUI Brick SD card.
-2. Create a folder in your SD card with the full-path of `/Tools/tg3040/Toggle Dufs Server.pak`.
-3. Copy `launch.sh`, `bin` and `res` to that SD card folder, ensuring it is still executable.
-4. Unmount your SD Card and insert it into your TrimUI Brick.
+2. Download the latest release from Github. It will be named `HTTP.Server.pak.zip`.
+3. Copy the zip file to `/Tools/tg3040/HTTP Server.pak.zip`.
+4. Extract the zip in place, then delete the zip file.
+5. Confirm that there is a `/Tools/tg3040/HTTP Server.pak/launch.sh` file on your SD card.
+6. Unmount your SD Card and insert it into your TrimUI Brick.
 
 ## Usage
 
