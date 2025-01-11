@@ -11,7 +11,7 @@ build: bin/evtest
 	cp dufs/target/aarch64-unknown-linux-gnu/release/dufs bin/dufs
 
 bin/evtest:
-	docker buildx build --platform linux/arm64 --load --build-arg BUILD_DATE=$(BUILD_DATE) -f Dockerfile.evtest --progress plain -t app/evtest:$(TAG) .
+	docker buildx build --platform linux/arm64 --load -f Dockerfile.evtest --progress plain -t app/evtest:$(TAG) .
 	docker container create --name extract app/evtest:$(TAG)
 	docker container cp extract:/go/src/github.com/freedesktop/evtest/evtest bin/evtest
 	docker container rm extract
