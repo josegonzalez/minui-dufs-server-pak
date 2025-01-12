@@ -1,3 +1,9 @@
-dufs
+dist
 bin/*
 !bin/.gitkeep
+log/*
+!log/.gitkeep
+res/fonts/*
+!res/fonts/.gitkeep
+
+dufs
