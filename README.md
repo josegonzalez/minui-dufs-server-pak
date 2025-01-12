@@ -4,12 +4,13 @@ A TrimUI Brick app wrapping [`dufs`](https://github.com/sigoden/dufs/), an http 
 
 ## Requirements
 
+- Docker (for building)
 - Rust (for building)
 
 ## Building
 
 ```shell
-make build
+make release
 ```
 
 ## Installation
