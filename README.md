@@ -17,12 +17,17 @@ make release
 
 1. Mount your TrimUI Brick SD card.
 2. Download the latest release from Github. It will be named `HTTP.Server.pak.zip`.
-3. Copy the zip file to `/Tools/tg3040/HTTP Server.pak.zip`.
+3. Copy the zip file to `/Tools/tg3040/HTTP Server.pak.zip`. Please ensure the new zip file name is `HTTP Server.pak.zip`, without a dot (`.`) between the words `HTTP` and `Server`.
 4. Extract the zip in place, then delete the zip file.
 5. Confirm that there is a `/Tools/tg3040/HTTP Server.pak/launch.sh` file on your SD card.
 6. Unmount your SD Card and insert it into your TrimUI Brick.
 
 ## Usage
+
+> [!IMPORTANT]
+> If the zip file was not extracted correctly, the pak may show up under `Tools > HTTP`. Rename the folder to `HTTP Server.pak` to fix this.
+
+Browse to `Tools > HTTP Server` and press `A` to turn on the HTTP Server.
 
 ### daemon-mode
 
