@@ -5,5 +5,3 @@ log/*
 !log/.gitkeep
 res/fonts/*
 !res/fonts/.gitkeep
-
-dufs
