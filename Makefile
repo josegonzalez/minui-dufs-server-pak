@@ -17,10 +17,10 @@ bin/evtest:
 	chmod +x bin/evtest
 
 bin/dufs:
-	test -d dufs || git clone https://github.com/sigoden/dufs
-	cd dufs && git fetch --tags && git checkout "tags/${TAG}"
-	cd dufs && cross build --release --target=aarch64-unknown-linux-gnu
-	cp dufs/target/aarch64-unknown-linux-gnu/release/dufs bin/dufs
+	curl -sSL -o bin/dufs.tar.gz "https://github.com/sigoden/dufs/releases/download/$(TAG)/dufs-$(TAG)-aarch64-unknown-linux-musl.tar.gz"
+	tar -xzf bin/dufs.tar.gz -C bin
+	rm bin/dufs.tar.gz
+	chmod +x bin/dufs
 
 bin/sdl2imgshow:
 	docker buildx build --platform linux/arm64 --load -f Dockerfile.sdl2imgshow --progress plain -t app/sdl2imgshow:$(TAG) .
