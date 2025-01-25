@@ -31,12 +31,6 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Setup Rust Toolchain
-        uses: actions-rust-lang/setup-rust-toolchain@v1
-
-      - name: Install cross
-        run: cargo install cross
-
       - name: Create release
         run: make clean build release
 
