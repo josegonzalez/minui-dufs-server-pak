@@ -158,17 +158,13 @@ main_screen() {
         start_on_boot=true
     fi
 
-    ip_address="$(get_ip_address)"
-
     echo "Enabled: false" >>"$minui_list_file"
     echo "Start on boot: $start_on_boot" >>"$minui_list_file"
-    if [ -n "$ip_address" ]; then
-        echo "Address: $ip_address" >>"$minui_list_file"
-    fi
     echo "Enable" >>"$minui_list_file"
 
     if is_service_running; then
         service_pid="$(pgrep "$SERVICE_NAME" 2>/dev/null | sort | head -n 1 || true)"
+        ip_address="$(get_ip_address)"
         echo "Enabled: true (pid: $service_pid)" >"$minui_list_file"
         echo "Start on boot: $start_on_boot" >>"$minui_list_file"
         if [ -n "$ip_address" ]; then
