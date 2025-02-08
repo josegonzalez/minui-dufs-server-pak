@@ -25,4 +25,8 @@ Use the correct platform for your device.
 > [!IMPORTANT]
 > If the zip file was not extracted correctly, the pak may show up under `Tools > HTTP`. Rename the folder to `HTTP Server.pak` to fix this.
 
-Browse to `Tools > HTTP Server` and press `A` to turn on the HTTP Server.
+Browse to `Tools > HTTP Server` and press `A` to enter the Pak.
+
+## port
+
+The server runs on port `80`. To utilize a different port, create a file named `port` in the pak folder with the port number you wish to run on.

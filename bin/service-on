@@ -11,8 +11,16 @@ main() {
         mv "$LOGS_PATH/$PAK_NAME.service.log" "$LOGS_PATH/$PAK_NAME.service.log.old"
     fi
 
+    port=""
+    if [ -f "$progdir/port" ]; then
+        port="$(cat "$progdir/port")"
+    fi
+    if [ -z "$port" ]; then
+        port=80
+    fi
+
     chmod +x "$progdir/bin/dufs"
-    "$bindir/dufs" --allow-all --bind 0.0.0.0 --port 80 --log-file "$LOGS_PATH/$PAK_NAME.service.log" &
+    "$bindir/dufs" --allow-all --bind 0.0.0.0 --port "$port" --log-file "$LOGS_PATH/$PAK_NAME.service.log" &
 }
 
 main "$@"
