@@ -7,14 +7,7 @@ clean:
 	rm -f bin/sdl2imgshow || true
 	rm -f res/fonts/BPreplayBold.otf || true
 
-build: bin/evtest bin/dufs bin/sdl2imgshow res/fonts/BPreplayBold.otf
-
-bin/evtest:
-	docker buildx build --platform linux/arm64 --load -f Dockerfile.evtest --progress plain -t app/evtest:$(TAG) .
-	docker container create --name extract app/evtest:$(TAG)
-	docker container cp extract:/go/src/github.com/freedesktop/evtest/evtest bin/evtest
-	docker container rm extract
-	chmod +x bin/evtest
+build: bin/dufs bin/sdl2imgshow res/fonts/BPreplayBold.otf
 
 bin/dufs:
 	curl -sSL -o bin/dufs.tar.gz "https://github.com/sigoden/dufs/releases/download/$(TAG)/dufs-$(TAG)-aarch64-unknown-linux-musl.tar.gz"
