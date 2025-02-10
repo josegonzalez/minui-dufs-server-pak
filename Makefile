@@ -3,27 +3,21 @@ BUILD_DATE := "$(shell date -u +%FT%TZ)"
 PAK_NAME := $(shell jq -r .label config.json)
 
 PLATFORMS := tg5040 rg35xxplus
-MINUI_LIST_VERSION := 0.3.1
-MINUI_KEYBOARD_VERSION := 0.2.1
+MINUI_LIST_VERSION := 0.4.0
 
 clean:
 	rm -f bin/dufs || true
-	rm -f bin/minui-keyboard-* || true
 	rm -f bin/minui-list-* || true
 	rm -f bin/sdl2imgshow || true
 	rm -f res/fonts/BPreplayBold.otf || true
 
-build: $(foreach platform,$(PLATFORMS),bin/minui-keyboard-$(platform) bin/minui-list-$(platform)) bin/dufs bin/sdl2imgshow res/fonts/BPreplayBold.otf
+build: $(foreach platform,$(PLATFORMS),bin/minui-list-$(platform)) bin/dufs bin/sdl2imgshow res/fonts/BPreplayBold.otf
 
 bin/dufs:
 	curl -sSL -o bin/dufs.tar.gz "https://github.com/sigoden/dufs/releases/download/$(TAG)/dufs-$(TAG)-aarch64-unknown-linux-musl.tar.gz"
 	tar -xzf bin/dufs.tar.gz -C bin
 	rm bin/dufs.tar.gz
 	chmod +x bin/dufs
-
-bin/minui-keyboard-%:
-	curl -f -o bin/minui-keyboard-$* -sSL https://github.com/josegonzalez/minui-keyboard/releases/download/$(MINUI_KEYBOARD_VERSION)/minui-keyboard-$*
-	chmod +x bin/minui-keyboard-$*
 
 bin/minui-list-%:
 	curl -f -o bin/minui-list-$* -sSL https://github.com/josegonzalez/minui-list/releases/download/$(MINUI_LIST_VERSION)/minui-list-$*
