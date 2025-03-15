@@ -1,5 +1,12 @@
-bin/dufs
-bin/minui-list-tg5040
-bin/minui-list-rg35xxplus
-bin/sdl2imgshow
-res/fonts/BPreplayBold.otf
+bin/arm/dufs
+bin/arm/dufs.LICENSE
+bin/arm/jq
+bin/arm/jq.LICENSE
+bin/arm64/dufs
+bin/arm64/dufs.LICENSE
+bin/arm64/jq
+bin/arm64/jq.LICENSE
+bin/rg35xxplus/minui-list
+bin/rg35xxplus/minui-presenter
+bin/tg5040/minui-list
+bin/tg5040/minui-presenter
