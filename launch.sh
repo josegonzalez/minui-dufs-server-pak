@@ -195,6 +195,7 @@ cleanup() {
 }
 
 main() {
+    echo "1" >/tmp/stay_awake
     trap "cleanup" EXIT INT TERM HUP QUIT
 
     if [ "$PLATFORM" = "tg3040" ] && [ -z "$DEVICE" ]; then
@@ -218,7 +219,7 @@ main() {
         return 1
     fi
 
-    chmod +x "$PAK_DIR/bin/$architecture/dufs"
+    chmod +x "$PAK_DIR/bin/$architecture/$SERVICE_NAME"
     chmod +x "$PAK_DIR/bin/$architecture/jq"
     chmod +x "$PAK_DIR/bin/$PLATFORM/minui-list"
     chmod +x "$PAK_DIR/bin/$PLATFORM/minui-presenter"
