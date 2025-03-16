@@ -58,22 +58,13 @@ jobs:
   release:
     name: release
     runs-on: ubuntu-24.04
+    needs: build
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Get Latest Tag
-        id: latest-tag
-        run: |
-          echo GIT_LATEST_TAG="$(git describe --tags "$(git rev-list --tags --max-count=1)")" >>"$GITHUB_OUTPUT"
-
-      - name: Compute Next Tag
-        id: next-tag
-        uses: docker://ghcr.io/dokku/semver-generator:latest
         with:
-          bump: ${{ github.event.inputs.bump_type }}
-          input: ${{ steps.latest-tag.outputs.GIT_LATEST_TAG }}
+          fetch-depth: 0
 
       - name: Get Pak Name
         id: pak-name
@@ -91,6 +82,18 @@ jobs:
             echo "Artifact does not exist"
             exit 1
           fi
+
+      - name: Get Latest Tag
+        id: latest-tag
+        run: |
+          echo GIT_LATEST_TAG="$(git describe --tags "$(git rev-list --tags --max-count=1)")" >>"$GITHUB_OUTPUT"
+
+      - name: Compute Next Tag
+        id: next-tag
+        uses: docker://ghcr.io/dokku/semver-generator:latest
+        with:
+          bump: ${{ github.event.inputs.bump_type }}
+          input: ${{ steps.latest-tag.outputs.GIT_LATEST_TAG }}
 
       - name: Create and Push Tag
         run: |
