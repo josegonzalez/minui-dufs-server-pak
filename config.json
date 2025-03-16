@@ -1,5 +1,21 @@
 {
     "label": "HTTP Server",
     "launch": "launch.sh",
-    "description": "Manages the HTTP Server"
+    "description": "Manages the HTTP Server",
+    "platforms": [
+        "rg35xxplus",
+        "tg5040"
+    ],
+    "settings": [
+        {
+            "name": "Enable",
+            "options": ["false", "true"],
+            "selected": 0
+        },
+        {
+            "name": "Start on boot",
+            "options": ["false", "true"],
+            "selected": 0
+        }
+    ]
 }

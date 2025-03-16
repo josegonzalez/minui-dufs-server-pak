@@ -29,10 +29,10 @@ Browse to `Tools > HTTP Server` and press `A` to enter the Pak.
 
 ### Debug Logging
 
-To enable debug logging, create a file named `debug` in the `$SDCARD_PATH/.userdata/$PLATFORM/HTTPServer` folder. Logs will be written to the `$SDCARD_PATH/.userdata/$PLATFORM/logs/` folder.
+To enable debug logging, create a file named `debug` in the `$SDCARD_PATH/.userdata/$PLATFORM/HTTP Server` folder. Logs will be written to the `$SDCARD_PATH/.userdata/$PLATFORM/logs/` folder.
 
 ### Configuration
 
 #### port
 
-The server runs on port `80`. To utilize a different port, create a file named `port` in the pak folder with the port number you wish to run on.
+The server runs on port `80`. To utilize a different port, create a file named `port` in the `$SDCARD_PATH/.userdata/$PLATFORM/HTTP Server` folder with the port number you wish to run on.
