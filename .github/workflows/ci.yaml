@@ -16,8 +16,8 @@ permissions:
   contents: write
 
 jobs:
-  ci:
-    name: ci
+  build:
+    name: build
     runs-on: ubuntu-24.04-arm
 
     steps:
@@ -53,7 +53,7 @@ jobs:
   faux-release:
     name: faux-release
     runs-on: ubuntu-24.04
-    needs: ci
+    needs: build
 
     steps:
       - name: Checkout
