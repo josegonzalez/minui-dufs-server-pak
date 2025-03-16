@@ -79,7 +79,6 @@ jobs:
       
       - name: Validate Artifact exists
         run: |
-          ls -la dist
           if [ ! -f "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip" ]; then
             echo "Artifact does not exist"
             exit 1
