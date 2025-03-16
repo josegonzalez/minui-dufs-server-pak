@@ -1,5 +1,5 @@
 ---
-name: "bump-version"
+name: "release"
 
 # yamllint disable-line rule:truthy
 on:
@@ -15,20 +15,26 @@ on:
           - minor
           - major
 
-env:
-  GITHUB_ACCESS_TOKEN: ${{ secrets.TRIMUI_ACCESS_TOKEN }}
+permissions:
+  attestations: write
+  id-token: write
+  contents: write
 
 jobs:
-  bump-version:
-    name: bump-version
+  release:
+    name: release
     runs-on: ubuntu-24.04-arm
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.4
-        with:
-          fetch-depth: 0
-          token: ${{ env.GITHUB_ACCESS_TOKEN }}
+        uses: actions/checkout@v4
+
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Get Latest Tag
         id: latest-tag
@@ -42,6 +48,25 @@ jobs:
           bump: ${{ github.event.inputs.bump_type }}
           input: ${{ steps.latest-tag.outputs.GIT_LATEST_TAG }}
 
+      - name: Create release
+        run: make clean build release
+
+      - name: Get Pak Name
+        id: pak-name
+        run: |
+          echo "PAK_NAME=$(jq -r .label config.json)" >> $GITHUB_OUTPUT
+
+      - name: Attest Build Provenance
+        uses: actions/attest-build-provenance@v2.1.0
+        with:
+          subject-path: "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
+
       - name: Create and Push Tag
         run: |
           git config --local user.email "action@github.com"
@@ -50,3 +75,11 @@ jobs:
           git push origin "$GIT_NEXT_TAG"
         env:
           GIT_NEXT_TAG: ${{ steps.next-tag.outputs.version }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+          make_latest: "true"
+          tag_name: ${{ steps.next-tag.outputs.version }}
