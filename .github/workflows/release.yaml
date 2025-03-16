@@ -74,7 +74,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: dist
+          path: "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip"
       
       - name: Validate Artifact exists
         run: |

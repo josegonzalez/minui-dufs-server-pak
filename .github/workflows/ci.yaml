@@ -49,3 +49,31 @@ jobs:
         with:
           name: dist
           path: dist/*
+
+  faux-release:
+    name: faux-release
+    runs-on: ubuntu-24.04
+    needs: ci
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get Pak Name
+        id: pak-name
+        run: |
+          echo "PAK_NAME=$(jq -r .label config.json)" >> $GITHUB_OUTPUT
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip"
+      
+      - name: Validate Artifact exists
+        run: |
+          if [ ! -f "dist/${{ steps.pak-name.outputs.PAK_NAME }}.pak.zip" ]; then
+            echo "Artifact does not exist"
+            exit 1
+          fi
