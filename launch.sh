@@ -203,12 +203,6 @@ main() {
         export PLATFORM="tg5040"
     fi
 
-    allowed_platforms="tg5040 rg35xxplus"
-    if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
-        show_message "$PLATFORM is not a supported platform" 2
-        return 1
-    fi
-
     if ! command -v minui-list >/dev/null 2>&1; then
         show_message "minui-list not found" 2
         return 1
@@ -225,6 +219,19 @@ main() {
     chmod +x "$PAK_DIR/bin/$PLATFORM/minui-presenter"
     chmod +x "$PAK_DIR/bin/service-on"
     chmod +x "$PAK_DIR/bin/on-boot"
+
+    allowed_platforms="miyoomini my282 rg35xxplus tg5040"
+    if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
+        show_message "$PLATFORM is not a supported platform" 2
+        return 1
+    fi
+
+    if [ "$PLATFORM" = "miyoomini" ]; then
+        if [ ! -f /customer/app/axp_test ]; then
+            show_message "Wifi not supported on non-Plus version of the Miyoo Mini" 2
+            return 1
+        fi
+    fi
 
     if [ "$PLATFORM" = "rg35xxplus" ]; then
         RGXX_MODEL="$(strings /mnt/vendor/bin/dmenu.bin | grep ^RG)"

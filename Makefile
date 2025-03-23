@@ -1,7 +1,7 @@
 PAK_NAME := $(shell jq -r .label config.json)
 
 ARCHITECTURES := arm arm64
-PLATFORMS := rg35xxplus tg5040
+PLATFORMS := miyoomini my282 rg35xxplus tg5040
 
 DUFS_VERSION := v0.43.0
 JQ_VERSION := 1.7.1
