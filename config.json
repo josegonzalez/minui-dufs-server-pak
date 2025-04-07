@@ -2,6 +2,7 @@
     "label": "HTTP Server",
     "launch": "launch.sh",
     "description": "Manages the HTTP Server",
+    "pak_type": "tool",
     "platforms": [
         "miyoomini",
         "my282",
