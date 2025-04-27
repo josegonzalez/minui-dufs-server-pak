@@ -1,16 +1,16 @@
 {
-    "name": "Dufs HTTP Server",
-    "type": "TOOL",
-    "description": "Manages the Dufs HTTP Server",
-    "author": "josegonzalez",
-    "repo_url": "https://github.com/josegonzalez/minui-dufs-server-pak",
-    "release_filename": "HTTP.Server.pak.zip",
-    "platforms": [
-        "miyoomini",
-        "my282",
-        "rg35xxplus",
-        "tg5040"
-    ],
-    "launch": "launch.sh",
-    "version": "latest"
+  "name": "Dufs HTTP Server",
+  "type": "TOOL",
+  "description": "Manages the Dufs HTTP Server",
+  "author": "josegonzalez",
+  "repo_url": "https://github.com/josegonzalez/minui-dufs-server-pak",
+  "release_filename": "HTTP.Server.pak.zip",
+  "platforms": [
+    "miyoomini",
+    "my282",
+    "rg35xxplus",
+    "tg5040"
+  ],
+  "launch": "launch.sh",
+  "version": "0.7.1"
 }
