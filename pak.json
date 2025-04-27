@@ -1,5 +1,5 @@
 {
-  "name": "Dufs HTTP Server",
+  "name": "HTTP Server",
   "type": "TOOL",
   "description": "Manages the Dufs HTTP Server",
   "author": "josegonzalez",
