@@ -6,7 +6,7 @@ PUSH_SDCARD_PATH ?= /mnt/SDCARD
 PUSH_PLATFORM ?= tg5040
 
 ARCHITECTURES := arm arm64
-PLATFORMS := miyoomini my282 rg35xxplus tg5040
+PLATFORMS := miyoomini my282 my355 rg35xxplus tg5040
 
 DUFS_VERSION := v0.43.0
 JQ_VERSION := 1.7.1
