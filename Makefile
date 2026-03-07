@@ -11,7 +11,7 @@ PLATFORMS := miyoomini my282 my355 rg35xxplus tg5040
 DUFS_VERSION := v0.43.0
 JQ_VERSION := 1.7.1
 MINUI_LIST_VERSION := 0.13.0
-MINUI_PRESENTER_VERSION := 0.11.0
+MINUI_PRESENTER_VERSION := 0.12.0
 
 clean:
 	rm -f bin/*/dufs || true
