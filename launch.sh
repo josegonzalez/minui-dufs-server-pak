@@ -156,6 +156,7 @@ current_settings() {
 main_screen() {
     settings="$1"
     minui_list_file="/tmp/${PAK_NAME}-minui-list.json"
+    minui_list_write_location="/tmp/${PAK_NAME}-minui-list-write-location.out"
     rm -f "$minui_list_file"
 
     echo "$settings" >"$minui_list_file"
@@ -172,7 +173,10 @@ main_screen() {
         fi
     fi
 
-    minui-list --disable-auto-sleep --file "$minui_list_file" --format json --title "$HUMAN_READABLE_NAME" --confirm-text "SAVE" --item-key "settings" --write-value state
+    minui-list --disable-auto-sleep --file "$minui_list_file" --format json --title "$HUMAN_READABLE_NAME" --confirm-text "SAVE" --item-key "settings" --write-value state --write-location "$minui_list_write_location" >/dev/null
+    exit_code=$?
+    cat "$minui_list_write_location"
+    return $exit_code
 }
 
 cleanup() {
@@ -180,6 +184,7 @@ cleanup() {
     rm -f "/tmp/${PAK_NAME}-new-settings.json"
     rm -f "/tmp/${PAK_NAME}-settings.json"
     rm -f "/tmp/${PAK_NAME}-minui-list.json"
+    rm -f "/tmp/${PAK_NAME}-minui-list-write-location.out"
     rm -f /tmp/stay_awake
     killall minui-presenter >/dev/null 2>&1 || true
 }
@@ -210,7 +215,7 @@ main() {
     chmod +x "$PAK_DIR/bin/service-on"
     chmod +x "$PAK_DIR/bin/on-boot"
 
-    allowed_platforms="miyoomini my282 my355 rg35xxplus tg5040"
+    allowed_platforms="miyoomini my282 my355 rg35xxplus tg5040 tg5050"
     if ! echo "$allowed_platforms" | grep -q "$PLATFORM"; then
         show_message "$PLATFORM is not a supported platform" 2
         return 1
